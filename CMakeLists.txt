@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.26)
+project(test1)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(main main.c)
+add_executable(test1 Classwork1.cpp)
+add_executable(FuncTest FuncTest.cpp)
+add_executable(test2 testClass.cpp)
+add_executable(test3 pointer.cpp)
+add_executable(mutiThread MutiThread.cpp)
+add_executable(work1 work1.c)
+add_executable(work2 work2.c)
+add_executable(work3 work3.c)
+add_executable(work4 work4.cpp)
+add_executable(sort sort.cpp)
