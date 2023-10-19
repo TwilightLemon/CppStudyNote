@@ -1,19 +1,18 @@
-#include <stdio.h>
-#include <math.h>
-
-int Factorial(int n){
-    int value=1;
-    for(int i=1;i<n+1;i++)
-        value*=i;
-    return value;
-}
-
+#include<stdio.h>
+#include<string.h>
+#define N 4
+//请编写代码输出两个字符串中所有相同位置上的相同字符
 int main(){
-    double x,n,res=0;
-    scanf_s("%lf %lf",&x,&n);
-    for(int i=0;i<n;i++){
-        res+=pow(x,i)/ Factorial(i);
+    char str1[N];
+    printf("请输入一个字符串:");
+    gets(str1);
+    char str2[N];
+    printf("再输入下一个字符串:");
+    gets(str2);
+    for(int i=0;i<N;i++){
+        if(str1[i]==str2[i]) {
+            printf("%c", str1[i]);
+        }
     }
-    printf("%.6f",res);
     return 0;
 }

@@ -3,8 +3,15 @@
 //
 #include <iostream>
 #include <vector>
-#include <ctime>
+#include <chrono>
 using namespace std;
+using namespace chrono;
+
+class SortedResult{
+public:
+    int count;
+    vector<int> list;
+};
 
 void swap(int &a,int &b){
     int temp=a;
@@ -12,7 +19,7 @@ void swap(int &a,int &b){
     b=temp;
 }
 
-int BobbleSort_v1(int list[],int length){
+SortedResult BobbleSort_v1(vector<int> list,int length){
     int count=0;
     for(int i=0;i<length;i++){
         for(int e=0;e<length;e++){
@@ -22,10 +29,10 @@ int BobbleSort_v1(int list[],int length){
             count++;
         }
     }
-    return count;
+    return SortedResult{count,list};
 }
 
-int BobbleSort_v2(int list[],int length){
+SortedResult BobbleSort_v2(vector<int> list,int length){
     int count=0;
     bool swapped;
     for(int i=length-1;i>0;i--){
@@ -39,10 +46,10 @@ int BobbleSort_v2(int list[],int length){
         }
         if(!swapped)break;
     }
-    return count;
+    return SortedResult{count,list};
 }
 
-int SelectSort(int *list,int length){
+SortedResult SelectSort(vector<int> list,int length){
     int temp,maxIndex,count=0;
     for(int i=0;i<length;i++){
         maxIndex=i;
@@ -54,13 +61,13 @@ int SelectSort(int *list,int length){
             temp = list[i];
             list[i] = list[maxIndex];
             list[maxIndex] = temp;
-            count++;
         }
+        count++;
     }
-    return count;
+    return SortedResult{count,list};
 }
 
-int InsertSort(int *list,int length){
+SortedResult InsertSort(vector<int> list,int length){
     int count=0;
     for(int i=1;i<length;i++){
         for(int j=i-1;j>=0;j--){
@@ -70,10 +77,10 @@ int InsertSort(int *list,int length){
             }
         }
     }
-    return count;
+    return SortedResult{count,list};
 }
 
-int InsertSort_v2(int *list,int length){
+SortedResult InsertSort_v2(vector<int> list,int length){
     int count=0;
     for(int i=1;i<length;i++){
         int index=i;
@@ -84,10 +91,10 @@ int InsertSort_v2(int *list,int length){
         }
         list[index]=value;
     }
-    return count;
+    return SortedResult{count,list};
 }
 
-int ShellSort(vector<int> &list, int length) {
+SortedResult ShellSort(vector<int> list, int length) {
     int gap,temp,count=0;
     for (gap = length >> 1; gap > 0; gap >>= 1)
         for (int i = gap; i < length; i++) {
@@ -98,25 +105,26 @@ int ShellSort(vector<int> &list, int length) {
             list[j + gap] = temp;
             count++;
         }
-    return count;
+    return SortedResult{count,list};
+}
+
+void TestSortFunc(string name,vector<int> list,SortedResult func(vector<int>,int)){
+    auto start=system_clock::now();
+    auto res_ins = func(list,list.size());
+    auto end=system_clock::now();
+    cout<<name<<":Total steps: "<<res_ins.count<<" Finished in "<<duration_cast<microseconds>(end-start).count()/1000.0<<"ms"<<endl;
 }
 
 int main(){
-    time_t start=clock();
     vector<int> list;
-    int length=10000;
+    int length=500000;
     for(int i=0;i<length;i++)
         list.push_back(rand());
-    cout<<"Origin:"<<endl;
-    for(int i :list)
-        cout<<i<<" ";
 
-    int count = ShellSort(list,length);
-    time_t end=clock();
-    cout<<"\nSorted:"<<endl;
-    for(int i :list)
-        cout<<i<<" ";
-    cout<<"\nTotal steps: "<<count<<" Finished in "<<end-start<<"ms"<<endl;
+    TestSortFunc("Shell Sort", list, ShellSort);
+    TestSortFunc("Insert Sort", list, InsertSort_v2);
+    TestSortFunc("Select Sort", list, SelectSort);
+    TestSortFunc("Bobble Sort", list, BobbleSort_v2);
 
     return 0;
 }
