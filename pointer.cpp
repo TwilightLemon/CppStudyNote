@@ -1,29 +1,25 @@
-#include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-int* Get(){
-    int* p=new int[3];
-    p[0]=1;
-    p[1]=2;
-    p[2]=3;
-    return p;
+bool Find(int **Map,int Cow,int Line,int value){
+    bool found=false;
+    for(int x=0;x<Cow;x++){
+        for(int y=0;y<Line;y++){
+            int a=*(*(Map+x)+y);//Map[x][y]
+            if(a==value)
+                found = true;
+            cout<<a<<"  ";
+        }
+    }
+    return found;
 }
 
 int main()
 {
-    int* p=Get();
-    for(int i=0;i<3;i++){
-        printf("%d\n",p[i]);
-    }
-    delete[] p;
-
-    char s[]="Hellow.";
-    cout<<(void*)&s[0]<<endl;
-
-    float a=2.0/3.0;
-    printf("%1.9f",a);
+    int m[][3]={{1,2,3},{2,3,4},{3,4,5}};
+    int *p[3]={m[0],m[1],m[2]};
+    Find(p,3,3,5);
 
     return 0;
 }
