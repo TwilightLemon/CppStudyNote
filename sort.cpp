@@ -1,5 +1,6 @@
 //
-// Created by cz241 on 10/13/2023.
+// Created by TwilightLemon on 10/13/2023.
+// 常见排序算法的c++实现，同SortTest.c
 //
 #include <iostream>
 #include <vector>
@@ -33,6 +34,23 @@ SortedResult BobbleSort_v1(vector<int> list,int length){
 }
 
 SortedResult BobbleSort_v2(vector<int> list,int length){
+    int count=0;
+    bool swapped;
+    for(int i=length-1;i>0;i--){
+        for(int e=0;e<i;e++){
+            swapped= false;
+            if(list[e+1]>list[e]){
+                swap(list[e+1],list[e]);
+                swapped=true;
+            }
+            count++;
+        }
+        if(!swapped)break;
+    }
+    return SortedResult{count,list};
+}
+
+SortedResult BobbleSort_v2_Double(vector<int> list,int length){
     int count=0;
     bool swapped;
     for(int i=length-1;i>0;i--){

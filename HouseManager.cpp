@@ -1,5 +1,6 @@
 //
 // Created by cz241 on 10/18/2023.
+//某人的作业
 /*
 You manage 4 buildings, each of which has 3 floors, each of which consists of 10 rooms.
 Write a program which reads a sequence of tenant/leaver notices, and reports the number of tenants for each room.

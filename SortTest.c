@@ -1,5 +1,7 @@
 //
-// Created by cz241 on 10/16/2023.
+// Created by TwilightLemon on 10/16/2023.
+//三种排序算法：冒泡、选择、插入
+//提供了测试函数，可以测试排序算法的性能
 //
 
 #include <stdio.h>
@@ -17,7 +19,8 @@ struct SortedResult InsertionSort(int *list,int length);
 int* TestSortFunc(char *name,int *list,int len,struct SortedResult func(int[],int));
 
 int main(){
-    int list[10000],len=10000;
+    const int len=10000;
+    int list[len];
     for(int i=0;i<len;i++)
         list[i]=rand();
 

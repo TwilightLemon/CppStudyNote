@@ -1,5 +1,7 @@
 //
-// Created by cz241 on 9/20/2023.
+// Created by TwilightLemon on 9/20/2023.
+//只是为了测试一下lambda表达式
+//对应教程:https://www.runoob.com/cplusplus/cpp-functions.html
 //
 #include <cstdio>
 #include <iostream>

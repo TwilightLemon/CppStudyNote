@@ -1,5 +1,6 @@
 //
-// Created by cz241 on 10/16/2023.
+// Created by TwilightLemon on 10/16/2023.
+// 循环队列(先进先出)的简单实现
 //
 #include <iostream>
 #include <cassert>
@@ -18,24 +19,24 @@ public:
     ~Queue(){
         delete[] list;
     }
+
     bool append(int value){
-        if (tail == &list[size - 1]) {
-            if (head == &list[0]&&count==0)
-                return false;
+        if(count==size)//队列已满
+            return false;
+        if (tail == list+size - 1) {//尾指针在数组末尾
             tail = &list[0];
-        } else if(count!=0) tail++;
+        } else if(count!=0) tail++;//非空情况下尾指针后移
         count++;
         *tail = value;
         return true;
     }
     int pop(){
-        if(count==0)
+        if(count==0)//队列为空
             return NULL;
         int value=*head;
         if (head == &list[size - 1]) {
             head = &list[0];
-        }
-        else head++;
+        } else head++;
         count--;
         return value;
     }
@@ -62,9 +63,7 @@ int main(){
     q->append(1);
     q->append(2);
     q->append(3);
-
     q->print();
-    cout<<q->is_empty();
 
 
     assert(q->pop()==1);
@@ -73,7 +72,6 @@ int main(){
     q->append(5);
     assert(q->pop()==3);
     q->append(6);
-    cout<<q->is_empty();
 
 
     q->print();

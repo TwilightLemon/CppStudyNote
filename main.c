@@ -1,3 +1,5 @@
+//是的你可以用emoji来写代码（部分支持）
+
 #include <stdio.h>
 #define 🐱 int
 #define 👻 printf
